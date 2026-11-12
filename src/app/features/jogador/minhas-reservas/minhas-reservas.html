@@ -1,0 +1,179 @@
+<div class="space-y-4 pb-8">
+  <div>
+    <h1 class="text-2xl font-bold tracking-tight text-on-surface">Minhas reservas</h1>
+    <p class="mt-1 text-sm text-on-surface-variant">
+      Acompanhe suas solicitações e reservas confirmadas.
+    </p>
+  </div>
+
+  @for (aviso of avisos(); track aviso.id) {
+    <div
+      class="flex items-start gap-3 rounded-xl px-4 py-3 text-sm font-medium"
+      [class]="
+        aviso.status === 'Confirmada' ? 'bg-success-bg text-success' : 'bg-error-bg text-error'
+      "
+      role="status"
+    >
+      <span aria-hidden="true" class="material-symbols-outlined shrink-0 text-xl">
+        {{ aviso.status === 'Confirmada' ? 'check_circle' : 'cancel' }}
+      </span>
+      <p class="flex-1 leading-relaxed">{{ textoAviso(aviso) }}</p>
+      <button
+        type="button"
+        class="-mr-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full hover:bg-black/5"
+        aria-label="Dispensar aviso"
+        (click)="dispensarAviso(aviso)"
+      >
+        <span aria-hidden="true" class="material-symbols-outlined text-xl">close</span>
+      </button>
+    </div>
+  }
+
+  <div class="grid grid-cols-2 rounded-xl border border-outline bg-white p-1.5" role="tablist">
+    <button
+      type="button"
+      role="tab"
+      [attr.aria-selected]="aba() === 'proximas'"
+      class="flex min-h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold transition"
+      [class.bg-primary]="aba() === 'proximas'"
+      [class.text-white]="aba() === 'proximas'"
+      [class.text-on-surface-variant]="aba() !== 'proximas'"
+      (click)="aba.set('proximas')"
+    >
+      Próximas
+      <span
+        class="rounded-full px-1.5 py-0.5 text-[11px] font-bold"
+        [class.bg-white/20]="aba() === 'proximas'"
+        [class.bg-slate-100]="aba() !== 'proximas'"
+      >
+        {{ proximas().length }}
+      </span>
+    </button>
+    <button
+      type="button"
+      role="tab"
+      [attr.aria-selected]="aba() === 'historico'"
+      class="flex min-h-11 items-center justify-center gap-2 rounded-lg px-3 text-sm font-semibold transition"
+      [class.bg-primary]="aba() === 'historico'"
+      [class.text-white]="aba() === 'historico'"
+      [class.text-on-surface-variant]="aba() !== 'historico'"
+      (click)="aba.set('historico')"
+    >
+      Histórico
+      <span
+        class="rounded-full px-1.5 py-0.5 text-[11px] font-bold"
+        [class.bg-white/20]="aba() === 'historico'"
+        [class.bg-slate-100]="aba() !== 'historico'"
+      >
+        {{ historico().length }}
+      </span>
+    </button>
+  </div>
+
+  @if (lista().length === 0) {
+    @if (aba() === 'proximas') {
+      <app-estado-vazio
+        icone="confirmation_number"
+        titulo="Você ainda não tem reservas"
+        descricao="Encontre um horário livre e envie sua primeira solicitação."
+      >
+        <a routerLink="/agenda" class="btn-primario">Ver horários</a>
+      </app-estado-vazio>
+    } @else {
+      <app-estado-vazio
+        icone="history"
+        titulo="Nenhuma reserva no histórico"
+        descricao="Reservas passadas, canceladas ou recusadas aparecerão aqui."
+      />
+    }
+  } @else {
+    <div class="space-y-3">
+      @for (reserva of lista(); track reserva.id) {
+        <div class="card overflow-hidden">
+          <div class="flex items-start justify-between gap-3 px-4 pb-2 pt-4">
+            <div class="min-w-0">
+              <p class="truncate text-base font-bold text-on-surface">{{ reserva.arenaNome }}</p>
+              <p class="truncate text-sm text-on-surface-variant">{{ reserva.quadraNome }}</p>
+            </div>
+            <app-chip-status [status]="reserva.status" />
+          </div>
+
+          <div class="space-y-1.5 px-4 pb-4 pt-2 text-sm">
+            <p class="flex items-center gap-2 text-on-surface">
+              <span aria-hidden="true" class="material-symbols-outlined text-lg text-primary"
+                >calendar_today</span
+              >
+              {{ dia(reserva) }}
+            </p>
+            <p class="flex items-center gap-2 text-on-surface">
+              <span aria-hidden="true" class="material-symbols-outlined text-lg text-primary"
+                >schedule</span
+              >
+              {{ reserva.horaInicio }} - {{ reserva.horaFim }}
+            </p>
+            <p class="flex items-center gap-2 font-semibold text-on-surface">
+              <span aria-hidden="true" class="material-symbols-outlined text-lg text-primary"
+                >payments</span
+              >
+              {{ valor(reserva) }}
+            </p>
+          </div>
+
+          @if (podeCancelarReserva(reserva)) {
+            <div class="border-t border-outline/70 p-4">
+              <button
+                type="button"
+                class="btn-perigo-contorno"
+                (click)="abrirCancelamento(reserva)"
+              >
+                <span aria-hidden="true" class="material-symbols-outlined text-xl">event_busy</span>
+                Cancelar
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<app-modal
+  [aberto]="reservaSelecionada() !== null"
+  titulo="Cancelar reserva"
+  (fechar)="fecharCancelamento()"
+>
+  @if (reservaSelecionada(); as reserva) {
+    <div class="rounded-xl bg-surface p-4 text-sm">
+      <p class="font-semibold text-on-surface">
+        {{ reserva.quadraNome }} · {{ reserva.arenaNome }}
+      </p>
+      <p class="mt-1 text-on-surface-variant">{{ dia(reserva) }}</p>
+      <p class="text-on-surface-variant">{{ reserva.horaInicio }} - {{ reserva.horaFim }}</p>
+    </div>
+
+    <p class="mt-4 text-sm leading-relaxed text-on-surface-variant">
+      Cancelamento permitido até
+      <strong class="text-on-surface">{{ prazoHoras() }} horas</strong> antes do horário.
+    </p>
+
+    @if (podeCancelarAgora()) {
+      <div class="mt-5 space-y-2">
+        <button type="button" class="btn-perigo" (click)="confirmarCancelamento()">
+          Confirmar cancelamento
+        </button>
+        <button type="button" class="btn-suave" (click)="fecharCancelamento()">
+          Manter reserva
+        </button>
+      </div>
+    } @else {
+      <div class="mt-4 rounded-xl border border-error/25 bg-error-bg/50 p-4">
+        <p class="text-sm font-bold text-error">Prazo de cancelamento expirado</p>
+        <p class="mt-1.5 text-sm leading-relaxed text-on-surface-variant">
+          Esta reserva começa em menos de {{ prazoHoras() }} horas e não pode mais ser cancelada
+          pelo app. Entre em contato com a arena.
+        </p>
+      </div>
+      <button type="button" class="btn-suave mt-4" (click)="fecharCancelamento()">Entendi</button>
+    }
+  }
+</app-modal>

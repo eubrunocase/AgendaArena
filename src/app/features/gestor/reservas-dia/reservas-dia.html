@@ -1,0 +1,172 @@
+<div class="space-y-4 pb-8">
+  @if (!arena()) {
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-on-surface">Reservas do dia</h1>
+      <p class="mt-1 text-sm text-on-surface-variant">Acompanhe a agenda da sua arena.</p>
+    </div>
+    <app-estado-vazio
+      icone="stadium"
+      titulo="Cadastre sua arena primeiro"
+      descricao="Salve os dados da arena e das quadras para acompanhar as reservas do dia."
+    >
+      <a routerLink="/gestor/arena" class="btn-primario">Cadastrar arena</a>
+    </app-estado-vazio>
+  } @else {
+    <div>
+      <h1 class="text-2xl font-bold tracking-tight text-on-surface">Reservas do dia</h1>
+      <p class="mt-1 text-sm text-on-surface-variant">{{ arena()?.nome }}</p>
+    </div>
+
+    <app-seletor-data [data]="data()" (dataChange)="data.set($event)" />
+
+    @if (quadras().length === 0) {
+      <app-estado-vazio
+        icone="event_busy"
+        titulo="Nenhuma reserva para este dia"
+        descricao="Cadastre ao menos uma quadra para organizar os horários da arena."
+      >
+        <a routerLink="/gestor/arena" class="btn-primario">Cadastrar quadra</a>
+      </app-estado-vazio>
+    } @else {
+      <div class="flex gap-2 overflow-x-auto pb-1 sem-barra" role="tablist" aria-label="Quadras">
+        @for (quadra of quadras(); track quadra.id) {
+          <button
+            type="button"
+            role="tab"
+            [attr.aria-selected]="quadraAtual()?.id === quadra.id"
+            class="min-h-11 shrink-0 rounded-lg border px-4 py-2 text-sm font-semibold transition"
+            [class.border-primary]="quadraAtual()?.id === quadra.id"
+            [class.bg-primary]="quadraAtual()?.id === quadra.id"
+            [class.text-white]="quadraAtual()?.id === quadra.id"
+            [class.border-outline]="quadraAtual()?.id !== quadra.id"
+            [class.bg-white]="quadraAtual()?.id !== quadra.id"
+            [class.text-on-surface-variant]="quadraAtual()?.id !== quadra.id"
+            (click)="trocarQuadra(quadra.id)"
+          >
+            {{ quadra.nome }}
+          </button>
+        }
+      </div>
+
+      <div
+        class="flex items-center gap-2 rounded-xl bg-primary/5 px-4 py-3 text-sm font-medium text-primary"
+      >
+        <span aria-hidden="true" class="material-symbols-outlined text-xl">summarize</span>
+        <span>{{ resumo() }}</span>
+      </div>
+
+      @if (linhas().length === 0) {
+        <app-estado-vazio
+          icone="event_busy"
+          titulo="Nenhuma reserva para este dia"
+          descricao="A quadra não funciona neste dia da semana."
+        />
+      } @else {
+        <div class="space-y-2.5">
+          @for (linha of linhas(); track linha.horario.hora) {
+            @switch (linha.tipo) {
+              @case ('confirmada') {
+                <div class="card border-l-4 border-l-success p-4">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <p class="text-sm font-bold text-on-surface">
+                        {{ linha.horario.hora }} - {{ linha.horario.horaFim }}
+                      </p>
+                      <p class="mt-1 truncate text-sm font-semibold text-success">
+                        {{ linha.reserva?.jogadorNome }}
+                      </p>
+                      @if (linha.reserva?.observacao) {
+                        <p class="mt-0.5 text-xs text-on-surface-variant">
+                          {{ linha.reserva?.observacao }}
+                        </p>
+                      }
+                    </div>
+                    <span class="chip bg-success-bg text-success">Confirmada</span>
+                  </div>
+                  <label
+                    class="mt-3 flex min-h-11 cursor-pointer items-center gap-2 rounded-lg bg-surface px-3 text-sm font-semibold text-on-surface"
+                  >
+                    <input
+                      type="checkbox"
+                      class="h-5 w-5 accent-primary"
+                      [checked]="linha.reserva?.comparecimento === true"
+                      (change)="marcarComparecimento(linha.reserva!, $event)"
+                    />
+                    Compareceu
+                  </label>
+                </div>
+              }
+              @case ('pendente') {
+                <div class="card border-l-4 border-l-pending p-4">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <p class="text-sm font-bold text-on-surface">
+                        {{ linha.horario.hora }} - {{ linha.horario.horaFim }}
+                      </p>
+                      <p class="mt-1 text-sm font-semibold text-pending">Pendente de aprovação</p>
+                      <p class="mt-0.5 text-xs text-on-surface-variant">
+                        {{ linha.reserva?.jogadorNome }}
+                      </p>
+                    </div>
+                    <app-chip-status [status]="linha.reserva?.status ?? 'Pendente'" />
+                  </div>
+                </div>
+              }
+              @case ('livre') {
+                <div class="card flex items-center justify-between gap-3 p-4">
+                  <div>
+                    <p class="text-sm font-bold text-on-surface">
+                      {{ linha.horario.hora }} - {{ linha.horario.horaFim }}
+                    </p>
+                    <p class="mt-0.5 text-xs font-semibold uppercase tracking-wide text-primary">
+                      Livre
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    class="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg border border-primary px-4 text-sm font-semibold text-primary transition hover:bg-primary/5"
+                    (click)="bloquear(linha)"
+                  >
+                    <span aria-hidden="true" class="material-symbols-outlined text-lg">block</span>
+                    Bloquear
+                  </button>
+                </div>
+              }
+              @case ('bloqueado') {
+                <div
+                  class="card flex items-center justify-between gap-3 border-l-4 border-l-error bg-error-bg/30 p-4"
+                >
+                  <div class="min-w-0">
+                    <p class="text-sm font-bold text-on-surface">
+                      {{ linha.horario.hora }} - {{ linha.horario.horaFim }}
+                    </p>
+                    <p class="mt-0.5 truncate text-xs text-error">
+                      Bloqueado · {{ linha.bloqueio?.motivo }}
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    class="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-lg border border-outline bg-white px-4 text-sm font-semibold text-on-surface transition hover:bg-surface"
+                    (click)="liberar(linha)"
+                  >
+                    Liberar
+                  </button>
+                </div>
+              }
+              @default {
+                <div class="card flex items-center justify-between gap-3 bg-slate-50 p-4">
+                  <p class="text-sm font-semibold text-slate-500">
+                    {{ linha.horario.hora }} - {{ linha.horario.horaFim }}
+                  </p>
+                  <span class="text-xs font-semibold uppercase tracking-wide text-slate-400"
+                    >Encerrado</span
+                  >
+                </div>
+              }
+            }
+          }
+        </div>
+      }
+    }
+  }
+</div>

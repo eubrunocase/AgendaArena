@@ -1,0 +1,126 @@
+@import 'tailwindcss';
+
+@source './app/**/*.{html,ts}';
+@source './index.html';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-primary: #006438;
+  --color-primary-container: #1b7f4c;
+  --color-surface: #f8f9ff;
+  --color-on-surface: #121c2a;
+  --color-on-surface-variant: #52606f;
+  --color-outline: #d5dbe5;
+  --color-error: #ba1a1a;
+  --color-error-bg: #ffdad6;
+  --color-pending: #996400;
+  --color-pending-bg: #fff4d6;
+  --color-success: #1b7f4c;
+  --color-success-bg: #e3f5ea;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface text-on-surface antialiased;
+    font-family: var(--font-sans);
+    min-height: 100dvh;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+    font-size: 1.5rem;
+    line-height: 1;
+    vertical-align: middle;
+  }
+
+  .icone-preenchido {
+    font-variation-settings:
+      'FILL' 1,
+      'wght' 500,
+      'GRAD' 0,
+      'opsz' 24;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-outline/80 bg-white shadow-sm;
+  }
+
+  .card-titulo {
+    @apply text-base font-semibold text-on-surface;
+  }
+
+  .btn-primario {
+    @apply inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:bg-primary-container focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-contorno {
+    @apply inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-primary bg-white px-4 py-3 text-sm font-semibold text-primary transition hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-suave {
+    @apply inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-outline bg-white px-4 py-3 text-sm font-semibold text-on-surface transition hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  .btn-perigo {
+    @apply inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-error px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#991111] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-error disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-perigo-contorno {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-error bg-white px-4 py-3 text-sm font-semibold text-error transition hover:bg-error/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-error disabled:cursor-not-allowed disabled:opacity-40;
+  }
+
+  .btn-texto {
+    @apply inline-flex min-h-11 items-center justify-center gap-1.5 rounded-lg px-2 text-sm font-semibold text-primary transition hover:bg-primary/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary;
+  }
+
+  .campo {
+    @apply block min-h-12 w-full rounded-xl border border-outline bg-white px-3.5 py-2.5 text-base text-on-surface outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+
+  .rotulo {
+    @apply mb-1.5 block text-sm font-medium text-on-surface;
+  }
+
+  .erro-campo {
+    @apply mt-1.5 text-xs font-medium text-error;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold whitespace-nowrap;
+  }
+
+  .link {
+    @apply font-semibold text-primary underline-offset-2 hover:underline;
+  }
+
+  .aviso-ambar {
+    @apply rounded-xl border border-pending/30 bg-pending-bg px-4 py-3 text-sm leading-relaxed text-pending;
+  }
+
+  .sem-barra {
+    scrollbar-width: none;
+  }
+
+  .sem-barra::-webkit-scrollbar {
+    display: none;
+  }
+}

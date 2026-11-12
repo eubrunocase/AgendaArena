@@ -1,0 +1,236 @@
+<div class="relative flex min-h-dvh flex-col overflow-hidden">
+  <div
+    class="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-primary/10 blur-3xl"
+  ></div>
+  <div
+    class="pointer-events-none absolute -bottom-28 -right-20 h-80 w-80 rounded-full bg-primary-container/10 blur-3xl"
+  ></div>
+
+  <div class="relative mx-auto flex w-full max-w-[440px] flex-1 flex-col px-4 py-8">
+    <div class="mb-8 flex items-center justify-center gap-2 text-primary">
+      <span aria-hidden="true" class="material-symbols-outlined icone-preenchido text-[34px]"
+        >sports_soccer</span
+      >
+      <span class="text-2xl font-extrabold tracking-tight">AgendaArena</span>
+    </div>
+
+    <div class="card overflow-hidden">
+      <div class="border-b border-outline/70">
+        <div class="grid grid-cols-2" role="tablist" aria-label="Entrar ou criar conta">
+          <button
+            type="button"
+            role="tab"
+            [attr.aria-selected]="aba() === 'entrar'"
+            class="-mb-px border-b-2 px-4 py-4 text-sm font-semibold transition"
+            [class.border-primary]="aba() === 'entrar'"
+            [class.text-primary]="aba() === 'entrar'"
+            [class.border-transparent]="aba() !== 'entrar'"
+            [class.text-on-surface-variant]="aba() !== 'entrar'"
+            (click)="trocarAba('entrar')"
+          >
+            Entrar
+          </button>
+          <button
+            type="button"
+            role="tab"
+            [attr.aria-selected]="aba() === 'criar'"
+            class="-mb-px border-b-2 px-4 py-4 text-sm font-semibold transition"
+            [class.border-primary]="aba() === 'criar'"
+            [class.text-primary]="aba() === 'criar'"
+            [class.border-transparent]="aba() !== 'criar'"
+            [class.text-on-surface-variant]="aba() !== 'criar'"
+            (click)="trocarAba('criar')"
+          >
+            Criar conta
+          </button>
+        </div>
+      </div>
+
+      <div class="p-5">
+        @if (aba() === 'entrar') {
+          <form class="space-y-4" [formGroup]="formEntrar" (ngSubmit)="entrar()" novalidate>
+            <div>
+              <label class="rotulo" for="login-email">E-mail</label>
+              <input
+                id="login-email"
+                type="email"
+                class="campo"
+                formControlName="email"
+                autocomplete="email"
+                placeholder="voce@exemplo.com"
+              />
+              @if (formEntrar.controls.email.touched && formEntrar.controls.email.invalid) {
+                <p class="erro-campo">
+                  {{
+                    formEntrar.controls.email.errors?.['required']
+                      ? 'Informe seu e-mail'
+                      : 'Informe um e-mail válido'
+                  }}
+                </p>
+              }
+            </div>
+
+            <div>
+              <label class="rotulo" for="login-senha">Senha</label>
+              <div class="relative">
+                <input
+                  id="login-senha"
+                  [type]="mostrarSenhaEntrar() ? 'text' : 'password'"
+                  class="campo pr-12"
+                  formControlName="senha"
+                  autocomplete="current-password"
+                  placeholder="Sua senha"
+                />
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-on-surface-variant hover:text-primary"
+                  [attr.aria-label]="mostrarSenhaEntrar() ? 'Ocultar senha' : 'Mostrar senha'"
+                  (click)="mostrarSenhaEntrar.set(!mostrarSenhaEntrar())"
+                >
+                  <span aria-hidden="true" class="material-symbols-outlined text-xl">
+                    {{ mostrarSenhaEntrar() ? 'visibility_off' : 'visibility' }}
+                  </span>
+                </button>
+              </div>
+              @if (formEntrar.controls.senha.touched && formEntrar.controls.senha.invalid) {
+                <p class="erro-campo">Informe sua senha</p>
+              }
+              @if (erroCredenciais()) {
+                <p class="erro-campo" role="alert">{{ erroCredenciais() }}</p>
+              }
+            </div>
+
+            <button type="submit" class="btn-primario">Entrar</button>
+          </form>
+        } @else {
+          <form class="space-y-4" [formGroup]="formCadastro" (ngSubmit)="criarConta()" novalidate>
+            <div>
+              <label class="rotulo" for="cadastro-nome">Nome</label>
+              <input
+                id="cadastro-nome"
+                type="text"
+                class="campo"
+                formControlName="nome"
+                autocomplete="name"
+                placeholder="Seu nome"
+              />
+              @if (formCadastro.controls.nome.touched && formCadastro.controls.nome.invalid) {
+                <p class="erro-campo">Informe seu nome</p>
+              }
+            </div>
+
+            <div>
+              <label class="rotulo" for="cadastro-email">E-mail</label>
+              <input
+                id="cadastro-email"
+                type="email"
+                class="campo"
+                formControlName="email"
+                autocomplete="email"
+                placeholder="voce@exemplo.com"
+              />
+              @if (erroEmailCadastro()) {
+                <p class="erro-campo">{{ erroEmailCadastro() }}</p>
+              } @else if (
+                formCadastro.controls.email.touched && formCadastro.controls.email.invalid
+              ) {
+                <p class="erro-campo">
+                  {{
+                    formCadastro.controls.email.errors?.['required']
+                      ? 'Informe seu e-mail'
+                      : 'Informe um e-mail válido'
+                  }}
+                </p>
+              }
+            </div>
+
+            <div>
+              <label class="rotulo" for="cadastro-senha">Senha</label>
+              <div class="relative">
+                <input
+                  id="cadastro-senha"
+                  [type]="mostrarSenhaCadastro() ? 'text' : 'password'"
+                  class="campo pr-12"
+                  formControlName="senha"
+                  autocomplete="new-password"
+                  placeholder="Mínimo de 6 caracteres"
+                />
+                <button
+                  type="button"
+                  class="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-on-surface-variant hover:text-primary"
+                  [attr.aria-label]="mostrarSenhaCadastro() ? 'Ocultar senha' : 'Mostrar senha'"
+                  (click)="mostrarSenhaCadastro.set(!mostrarSenhaCadastro())"
+                >
+                  <span aria-hidden="true" class="material-symbols-outlined text-xl">
+                    {{ mostrarSenhaCadastro() ? 'visibility_off' : 'visibility' }}
+                  </span>
+                </button>
+              </div>
+              @if (formCadastro.controls.senha.touched && formCadastro.controls.senha.invalid) {
+                <p class="erro-campo">
+                  {{
+                    formCadastro.controls.senha.errors?.['required']
+                      ? 'Informe uma senha'
+                      : 'A senha deve ter pelo menos 6 caracteres'
+                  }}
+                </p>
+              }
+            </div>
+
+            <div>
+              <span class="rotulo">Perfil</span>
+              <div class="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  class="flex min-h-[76px] flex-col items-center justify-center gap-1 rounded-xl border-2 px-2 py-2 text-xs font-semibold transition"
+                  [class.border-primary]="perfil() === 'jogador'"
+                  [class.bg-primary/5]="perfil() === 'jogador'"
+                  [class.text-primary]="perfil() === 'jogador'"
+                  [class.border-outline]="perfil() !== 'jogador'"
+                  [class.text-on-surface-variant]="perfil() !== 'jogador'"
+                  [attr.aria-pressed]="perfil() === 'jogador'"
+                  (click)="perfil.set('jogador')"
+                >
+                  <span aria-hidden="true" class="material-symbols-outlined text-2xl"
+                    >sports_soccer</span
+                  >
+                  Sou jogador
+                </button>
+                <button
+                  type="button"
+                  class="flex min-h-[76px] flex-col items-center justify-center gap-1 rounded-xl border-2 px-2 py-2 text-xs font-semibold transition"
+                  [class.border-primary]="perfil() === 'gestor'"
+                  [class.bg-primary/5]="perfil() === 'gestor'"
+                  [class.text-primary]="perfil() === 'gestor'"
+                  [class.border-outline]="perfil() !== 'gestor'"
+                  [class.text-on-surface-variant]="perfil() !== 'gestor'"
+                  [attr.aria-pressed]="perfil() === 'gestor'"
+                  (click)="perfil.set('gestor')"
+                >
+                  <span aria-hidden="true" class="material-symbols-outlined text-2xl">stadium</span>
+                  Sou gestor de arena
+                </button>
+              </div>
+            </div>
+
+            @if (erroGeralCadastro()) {
+              <p
+                class="rounded-lg bg-error-bg px-3 py-2 text-sm font-medium text-error"
+                role="alert"
+              >
+                {{ erroGeralCadastro() }}
+              </p>
+            }
+
+            <button type="submit" class="btn-primario">Criar conta</button>
+          </form>
+        }
+      </div>
+    </div>
+
+    <p class="mt-6 text-center text-[11px] leading-relaxed text-on-surface-variant">
+      Versão de demonstração. Para testar, use jogador&#64;agendaarena.demo ou
+      gestor&#64;agendaarena.demo, com a senha 123456. Os dados ficam salvos apenas neste navegador.
+    </p>
+  </div>
+</div>

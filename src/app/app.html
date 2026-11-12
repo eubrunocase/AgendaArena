@@ -1,0 +1,13 @@
+@if (autenticado()) {
+  <app-header />
+}
+
+<main [class]="autenticado() ? 'mx-auto w-full max-w-[640px] px-4 pb-32 pt-4' : 'w-full'">
+  <router-outlet />
+</main>
+
+@if (autenticado()) {
+  <app-bottom-nav />
+}
+
+<app-toast />

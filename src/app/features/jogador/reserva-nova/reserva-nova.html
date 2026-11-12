@@ -1,0 +1,99 @@
+<div class="space-y-4 pb-8">
+  <div>
+    <h1 class="text-2xl font-bold tracking-tight text-on-surface">Solicitar reserva</h1>
+    <p class="mt-1 text-sm text-on-surface-variant">
+      Confira os dados antes de enviar sua solicitação.
+    </p>
+  </div>
+
+  @if (!valido()) {
+    <app-estado-vazio
+      icone="event_busy"
+      titulo="Horário indisponível"
+      descricao="Volte para a agenda e escolha outro horário livre."
+    >
+      <button type="button" class="btn-primario" (click)="voltar()">Voltar para a agenda</button>
+    </app-estado-vazio>
+  } @else {
+    <div class="card overflow-hidden">
+      <div class="bg-primary px-5 py-4 text-white">
+        <p class="text-sm font-medium text-white/80">Resumo da reserva</p>
+        <p class="mt-0.5 text-xl font-bold">{{ arena()?.nome }}</p>
+        <p class="text-sm text-white/80">{{ arena()?.bairro }}</p>
+      </div>
+      <div class="divide-y divide-outline/70">
+        <div class="flex items-center gap-3 px-5 py-3.5">
+          <span aria-hidden="true" class="material-symbols-outlined text-xl text-primary"
+            >stadium</span
+          >
+          <div class="min-w-0 flex-1">
+            <p class="text-xs text-on-surface-variant">Quadra</p>
+            <p class="truncate text-sm font-semibold text-on-surface">
+              {{ quadra()?.nome }} · {{ quadra()?.tipo }}
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 px-5 py-3.5">
+          <span aria-hidden="true" class="material-symbols-outlined text-xl text-primary"
+            >calendar_today</span
+          >
+          <div class="min-w-0 flex-1">
+            <p class="text-xs text-on-surface-variant">Data</p>
+            <p class="text-sm font-semibold text-on-surface">{{ diaPorExtenso() }}</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 px-5 py-3.5">
+          <span aria-hidden="true" class="material-symbols-outlined text-xl text-primary"
+            >schedule</span
+          >
+          <div class="min-w-0 flex-1">
+            <p class="text-xs text-on-surface-variant">Horário</p>
+            <p class="text-sm font-semibold text-on-surface">
+              {{ horario()?.hora }} - {{ horario()?.horaFim }}
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 px-5 py-3.5">
+          <span aria-hidden="true" class="material-symbols-outlined text-xl text-primary"
+            >payments</span
+          >
+          <div class="min-w-0 flex-1">
+            <p class="text-xs text-on-surface-variant">Valor</p>
+            <p class="text-sm font-semibold text-on-surface">{{ valor() }}</p>
+          </div>
+        </div>
+      </div>
+      <p class="border-t border-outline/70 bg-surface px-5 py-3 text-xs text-on-surface-variant">
+        Pagamento feito diretamente na arena.
+      </p>
+    </div>
+
+    <div class="card p-4">
+      <label class="rotulo" for="observacao">Nome do time ou observação</label>
+      <textarea
+        id="observacao"
+        class="campo min-h-[96px] resize-y"
+        rows="3"
+        maxlength="200"
+        placeholder="Opcional"
+        [ngModel]="observacao()"
+        (ngModelChange)="observacao.set($event)"
+      ></textarea>
+      <p class="mt-1.5 text-xs text-on-surface-variant">
+        Opcional. Ajuda o gestor a identificar o grupo.
+      </p>
+    </div>
+
+    <div class="aviso-ambar flex items-start gap-3">
+      <span aria-hidden="true" class="material-symbols-outlined shrink-0 text-xl">info</span>
+      <p class="leading-relaxed">
+        Sua solicitação ficará <strong>Pendente</strong> até a aprovação do gestor da arena.
+      </p>
+    </div>
+
+    <div class="space-y-2">
+      <button type="button" class="btn-primario" (click)="enviar()">Enviar solicitação</button>
+      <button type="button" class="btn-suave" (click)="voltar()">Voltar</button>
+    </div>
+  }
+</div>

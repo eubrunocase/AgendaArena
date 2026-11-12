@@ -1,0 +1,176 @@
+<div class="space-y-4 pb-24">
+  <div>
+    <h1 class="text-2xl font-bold tracking-tight text-on-surface">Agenda de horários</h1>
+    <p class="mt-1 text-sm text-on-surface-variant">
+      Escolha a arena, a quadra e o horário para jogar.
+    </p>
+  </div>
+
+  @if (arenas().length === 0) {
+    <app-estado-vazio
+      icone="stadium"
+      titulo="Nenhuma arena com agenda publicada ainda"
+      descricao="Assim que um gestor publicar os horários, as quadras aparecerão aqui."
+    />
+  } @else {
+    <div class="card space-y-4 p-4">
+      <div>
+        <label class="rotulo" for="arena">Arena</label>
+        <select
+          id="arena"
+          class="campo"
+          [value]="arenaAtual()?.id ?? ''"
+          (change)="trocarArena($any($event.target).value)"
+        >
+          @for (arena of arenas(); track arena.id) {
+            <option [value]="arena.id">{{ arena.nome }} — {{ arena.bairro }}</option>
+          }
+        </select>
+      </div>
+
+      @if (quadras().length > 0) {
+        <div>
+          <span class="rotulo">Quadra</span>
+          <div
+            class="flex gap-2 overflow-x-auto pb-1 sem-barra"
+            role="tablist"
+            aria-label="Quadras"
+          >
+            @for (quadra of quadras(); track quadra.id) {
+              <button
+                type="button"
+                role="tab"
+                [attr.aria-selected]="quadraAtual()?.id === quadra.id"
+                class="min-h-11 shrink-0 rounded-lg border px-4 py-2 text-sm font-semibold transition"
+                [class.border-primary]="quadraAtual()?.id === quadra.id"
+                [class.bg-primary]="quadraAtual()?.id === quadra.id"
+                [class.text-white]="quadraAtual()?.id === quadra.id"
+                [class.border-outline]="quadraAtual()?.id !== quadra.id"
+                [class.bg-white]="quadraAtual()?.id !== quadra.id"
+                [class.text-on-surface-variant]="quadraAtual()?.id !== quadra.id"
+                (click)="trocarQuadra(quadra.id)"
+              >
+                {{ quadra.nome }}
+              </button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    @if (quadras().length === 0) {
+      <app-estado-vazio
+        icone="event_busy"
+        titulo="Nenhuma quadra cadastrada nesta arena"
+        descricao="O gestor ainda não cadastrou quadras para esta arena."
+      />
+    } @else {
+      <div class="flex gap-2 overflow-x-auto pb-1 sem-barra" aria-label="Próximos 7 dias">
+        @for (dia of dias(); track dia) {
+          <button
+            type="button"
+            class="flex min-h-[62px] w-[72px] shrink-0 flex-col items-center justify-center gap-0.5 rounded-xl border px-2 py-2 text-xs font-semibold transition"
+            [class.border-primary]="data() === dia"
+            [class.bg-primary]="data() === dia"
+            [class.text-white]="data() === dia"
+            [class.border-outline]="data() !== dia"
+            [class.bg-white]="data() !== dia"
+            [class.text-on-surface-variant]="data() !== dia"
+            [attr.aria-pressed]="data() === dia"
+            (click)="trocarData(dia)"
+          >
+            <span class="uppercase tracking-wide">{{ rotuloFaixa(dia) }}</span>
+            <span class="text-sm font-bold">{{ dataCurta(dia) }}</span>
+          </button>
+        }
+      </div>
+
+      <div class="flex items-end justify-between gap-2">
+        <div>
+          <h2 class="text-base font-semibold text-on-surface">
+            {{ quadraAtual()?.nome }} · {{ quadraAtual()?.tipo }}
+          </h2>
+          <p class="text-xs text-on-surface-variant">{{ valorAtual() }} por horário</p>
+        </div>
+        <span class="rounded-lg bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">
+          {{ quadraAtual()?.duracaoMin }} min
+        </span>
+      </div>
+
+      @if (linhas().length === 0) {
+        <app-estado-vazio
+          icone="event_busy"
+          titulo="Quadra fechada neste dia"
+          descricao="Escolha outra data ou outra quadra para ver os horários."
+        />
+      } @else {
+        <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+          @for (linha of linhas(); track linha.hora) {
+            <button
+              type="button"
+              class="flex min-h-[92px] flex-col items-start justify-between rounded-xl border p-3 text-left transition disabled:cursor-not-allowed"
+              [class]="classeHorario(linha)"
+              [disabled]="linha.estado !== 'Livre'"
+              [attr.aria-pressed]="estaSelecionado(linha)"
+              (click)="selecionarHorario(linha)"
+            >
+              <span class="text-sm font-bold">{{ linha.hora }} - {{ linha.horaFim }}</span>
+              <span class="text-xs font-medium">{{ valorAtual() }}</span>
+              <span
+                class="text-[11px] font-bold uppercase tracking-wide"
+                [class]="corEstado(linha)"
+              >
+                {{ estaSelecionado(linha) ? 'Selecionado' : linha.estado }}
+              </span>
+            </button>
+          }
+        </div>
+
+        <div
+          class="flex flex-wrap items-center gap-x-4 gap-y-2 px-1 text-xs text-on-surface-variant"
+        >
+          @for (item of legenda; track item.estado) {
+            <span class="flex items-center gap-1.5">
+              <span class="h-2.5 w-2.5 rounded-full" [class]="item.classe"></span>
+              {{ item.estado }}
+            </span>
+          }
+          <span class="flex items-center gap-1.5">
+            <span class="h-2.5 w-2.5 rounded-full border-2 border-primary bg-primary/20"></span>
+            Selecionado
+          </span>
+        </div>
+      }
+    }
+  }
+</div>
+
+@if (arenas().length > 0 && quadras().length > 0) {
+  <div
+    class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-30 border-t border-outline/70 bg-white/95 backdrop-blur"
+  >
+    <div class="mx-auto flex max-w-[640px] items-center gap-3 px-4 py-3">
+      <div class="min-w-0 flex-1">
+        @if (selecionada(); as horario) {
+          <p class="truncate text-sm font-semibold text-on-surface">
+            {{ horario.hora }} - {{ horario.horaFim }}
+          </p>
+          <p class="truncate text-xs text-on-surface-variant">
+            {{ quadraAtual()?.nome }} · {{ valorAtual() }}
+          </p>
+        } @else {
+          <p class="text-sm font-medium text-on-surface-variant">Escolha um horário disponível</p>
+          <p class="text-xs text-on-surface-variant">{{ dataCurta(data()) }}</p>
+        }
+      </div>
+      <button
+        type="button"
+        class="btn-primario w-auto min-w-[150px] shrink-0"
+        [disabled]="!selecionada()"
+        (click)="solicitar()"
+      >
+        Solicitar reserva
+      </button>
+    </div>
+  </div>
+}

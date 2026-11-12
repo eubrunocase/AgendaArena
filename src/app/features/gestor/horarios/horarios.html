@@ -1,0 +1,202 @@
+<div class="space-y-4 pb-24">
+  <div>
+    <h1 class="text-2xl font-bold tracking-tight text-on-surface">Horários e bloqueios</h1>
+    <p class="mt-1 text-sm text-on-surface-variant">
+      Defina o funcionamento e bloqueie horários quando precisar.
+    </p>
+  </div>
+
+  @if (!arena()) {
+    <app-estado-vazio
+      icone="stadium"
+      titulo="Cadastre sua arena primeiro"
+      descricao="Salve a arena e adicione quadras para configurar os horários de funcionamento."
+    >
+      <a routerLink="/gestor/arena" class="btn-primario">Ir para arena e quadras</a>
+    </app-estado-vazio>
+  } @else if (quadras().length === 0) {
+    <app-estado-vazio
+      icone="schedule"
+      titulo="Cadastre ao menos uma quadra"
+      descricao="Cada quadra tem seus próprios dias, horários e valores."
+    >
+      <a routerLink="/gestor/arena" class="btn-primario">Cadastrar quadra</a>
+    </app-estado-vazio>
+  } @else {
+    <div class="flex gap-2 overflow-x-auto pb-1 sem-barra" role="tablist" aria-label="Quadras">
+      @for (quadra of quadras(); track quadra.id) {
+        <button
+          type="button"
+          role="tab"
+          [attr.aria-selected]="quadraAtual()?.id === quadra.id"
+          class="min-h-11 shrink-0 rounded-lg border px-4 py-2 text-sm font-semibold transition"
+          [class.border-primary]="quadraAtual()?.id === quadra.id"
+          [class.bg-primary]="quadraAtual()?.id === quadra.id"
+          [class.text-white]="quadraAtual()?.id === quadra.id"
+          [class.border-outline]="quadraAtual()?.id !== quadra.id"
+          [class.bg-white]="quadraAtual()?.id !== quadra.id"
+          [class.text-on-surface-variant]="quadraAtual()?.id !== quadra.id"
+          (click)="trocarQuadra(quadra.id)"
+        >
+          {{ quadra.nome }}
+        </button>
+      }
+    </div>
+
+    <form
+      class="card space-y-4 p-5"
+      [formGroup]="form"
+      (ngSubmit)="salvarConfiguracao()"
+      novalidate
+    >
+      <div>
+        <h2 class="card-titulo">Funcionamento</h2>
+        <p class="mt-0.5 text-xs text-on-surface-variant">
+          {{ quadraAtual()?.nome }} · {{ quadraAtual()?.tipo }}
+        </p>
+      </div>
+
+      <div>
+        <span class="rotulo">Dias de funcionamento</span>
+        <div class="flex flex-wrap gap-1.5">
+          @for (dia of diasSemana; track dia.valor) {
+            <button
+              type="button"
+              class="min-h-11 min-w-11 rounded-lg border px-2.5 text-sm font-semibold transition"
+              [class.border-primary]="diaAtivo(dia.valor)"
+              [class.bg-primary]="diaAtivo(dia.valor)"
+              [class.text-white]="diaAtivo(dia.valor)"
+              [class.border-outline]="!diaAtivo(dia.valor)"
+              [class.bg-white]="!diaAtivo(dia.valor)"
+              [class.text-on-surface-variant]="!diaAtivo(dia.valor)"
+              [attr.aria-pressed]="diaAtivo(dia.valor)"
+              [attr.aria-label]="dia.nome"
+              (click)="alternarDia(dia.valor)"
+            >
+              {{ dia.rotulo }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label class="rotulo" for="abertura">Abertura</label>
+          <input id="abertura" type="time" class="campo" formControlName="abertura" />
+        </div>
+        <div>
+          <label class="rotulo" for="fechamento">Fechamento</label>
+          <input id="fechamento" type="time" class="campo" formControlName="fechamento" />
+        </div>
+        <div>
+          <label class="rotulo" for="duracao">Duração do horário</label>
+          <select id="duracao" class="campo" formControlName="duracaoMin">
+            @for (duracao of duracoes; track duracao) {
+              <option [ngValue]="duracao">{{ duracao }} min</option>
+            }
+          </select>
+        </div>
+        <div>
+          <label class="rotulo" for="valor">Valor por horário (R$)</label>
+          <input id="valor" type="number" min="1" step="1" class="campo" formControlName="valor" />
+        </div>
+      </div>
+
+      @if (erroConfiguracao()) {
+        <p class="rounded-lg bg-error-bg px-3 py-2 text-sm font-medium text-error" role="alert">
+          {{ erroConfiguracao() }}
+        </p>
+      }
+
+      <button type="submit" class="btn-primario">Salvar configuração</button>
+    </form>
+
+    <div class="card space-y-4 p-5">
+      <div>
+        <h2 class="card-titulo">Bloqueio rápido</h2>
+        <p class="mt-0.5 text-xs text-on-surface-variant">
+          Toque em um horário livre para bloquear e em um bloqueado para liberar.
+        </p>
+      </div>
+
+      <div>
+        <label class="rotulo" for="motivo">Motivo</label>
+        <input
+          id="motivo"
+          type="text"
+          class="campo"
+          placeholder="Indisponível"
+          [value]="motivo()"
+          (input)="motivo.set($any($event.target).value)"
+        />
+      </div>
+
+      <div class="flex gap-2 overflow-x-auto pb-1 sem-barra" aria-label="Próximos 14 dias">
+        @for (dia of dias(); track dia) {
+          <button
+            type="button"
+            class="flex min-h-[62px] w-[72px] shrink-0 flex-col items-center justify-center gap-0.5 rounded-xl border px-2 py-2 text-xs font-semibold transition"
+            [class.border-primary]="data() === dia"
+            [class.bg-primary]="data() === dia"
+            [class.text-white]="data() === dia"
+            [class.border-outline]="data() !== dia"
+            [class.bg-white]="data() !== dia"
+            [class.text-on-surface-variant]="data() !== dia"
+            [attr.aria-pressed]="data() === dia"
+            (click)="data.set(dia)"
+          >
+            <span class="uppercase tracking-wide">{{ rotuloFaixa(dia) }}</span>
+            <span class="text-sm font-bold">{{ dataCurta(dia) }}</span>
+          </button>
+        }
+      </div>
+
+      @if (linhas().length === 0) {
+        <app-estado-vazio
+          icone="event_busy"
+          titulo="Quadra fechada neste dia"
+          descricao="Ative este dia da semana no funcionamento ou escolha outra data."
+        />
+      } @else {
+        <div class="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+          @for (linha of linhas(); track linha.hora) {
+            <button
+              type="button"
+              class="flex min-h-[78px] flex-col items-start justify-between rounded-xl border p-3 text-left transition disabled:cursor-not-allowed"
+              [class]="classeHorario(linha)"
+              [disabled]="linha.estado === 'Encerrado'"
+              [attr.aria-label]="linha.hora + ' - ' + linha.horaFim + ': ' + linha.estado"
+              (click)="aoTocarHorario(linha)"
+            >
+              <span class="text-sm font-bold">{{ linha.hora }} - {{ linha.horaFim }}</span>
+              <span
+                class="text-[11px] font-bold uppercase tracking-wide"
+                [class]="corEstado(linha)"
+              >
+                {{ linha.estado }}
+              </span>
+              @if (linha.estado === 'Bloqueado' && linha.motivo) {
+                <span class="w-full truncate text-[10px] text-on-surface-variant">{{
+                  linha.motivo
+                }}</span>
+              }
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>
+
+@if (arena()) {
+  <div
+    class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-30 border-t border-outline/70 bg-white/95 px-4 py-3 backdrop-blur"
+  >
+    <div class="mx-auto max-w-[640px]">
+      <button type="button" class="btn-primario" (click)="publicar()">
+        <span aria-hidden="true" class="material-symbols-outlined text-xl">publish</span>
+        Publicar agenda
+      </button>
+    </div>
+  </div>
+}

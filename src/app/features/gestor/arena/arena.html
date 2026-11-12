@@ -1,0 +1,209 @@
+<div class="space-y-4 pb-8">
+  <div>
+    <h1 class="text-2xl font-bold tracking-tight text-on-surface">Arena e quadras</h1>
+    <p class="mt-1 text-sm text-on-surface-variant">
+      Cadastre os dados da arena e as quadras disponíveis.
+    </p>
+  </div>
+
+  <form class="card space-y-4 p-5" [formGroup]="formArena" (ngSubmit)="salvarArena()" novalidate>
+    <div>
+      <h2 class="card-titulo">Dados da arena</h2>
+      <p class="mt-0.5 text-xs text-on-surface-variant">
+        Essas informações aparecem para os jogadores.
+      </p>
+    </div>
+
+    <div>
+      <label class="rotulo" for="arena-nome">Nome da arena</label>
+      <input
+        id="arena-nome"
+        type="text"
+        class="campo"
+        formControlName="nome"
+        placeholder="Arena Boa Bola"
+      />
+      @if (formArena.controls.nome.touched && formArena.controls.nome.invalid) {
+        <p class="erro-campo">Informe o nome da arena</p>
+      }
+    </div>
+
+    <div>
+      <label class="rotulo" for="arena-bairro">Bairro ou endereço</label>
+      <input
+        id="arena-bairro"
+        type="text"
+        class="campo"
+        formControlName="bairro"
+        placeholder="Pituba, Salvador"
+      />
+      @if (formArena.controls.bairro.touched && formArena.controls.bairro.invalid) {
+        <p class="erro-campo">Informe o bairro ou endereço</p>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div>
+        <label class="rotulo" for="arena-telefone">Telefone</label>
+        <input
+          id="arena-telefone"
+          type="tel"
+          class="campo"
+          formControlName="telefone"
+          placeholder="(71) 98765-4321"
+        />
+        @if (formArena.controls.telefone.touched && formArena.controls.telefone.invalid) {
+          <p class="erro-campo">Informe o telefone</p>
+        }
+      </div>
+      <div>
+        <label class="rotulo" for="arena-prazo">Prazo mínimo de cancelamento (horas)</label>
+        <input
+          id="arena-prazo"
+          type="number"
+          min="0"
+          step="1"
+          class="campo"
+          formControlName="prazoCancelamentoHoras"
+        />
+        @if (
+          formArena.controls.prazoCancelamentoHoras.touched &&
+          formArena.controls.prazoCancelamentoHoras.invalid
+        ) {
+          <p class="erro-campo">Informe um prazo válido</p>
+        }
+      </div>
+    </div>
+
+    <button type="submit" class="btn-primario">Salvar arena</button>
+  </form>
+
+  <div class="card p-5">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <h2 class="card-titulo">Quadras</h2>
+        <p class="mt-0.5 text-xs text-on-surface-variant">
+          Horários e valores são definidos em “Horários”.
+        </p>
+      </div>
+      <button
+        type="button"
+        class="inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-lg bg-primary px-3.5 text-sm font-semibold text-white transition hover:bg-primary-container disabled:opacity-40"
+        [disabled]="!arena()"
+        (click)="abrirNovaQuadra()"
+      >
+        <span aria-hidden="true" class="material-symbols-outlined text-lg">add</span>
+        Adicionar quadra
+      </button>
+    </div>
+
+    @if (!arena()) {
+      <div
+        class="mt-4 rounded-xl border border-dashed border-outline bg-surface px-4 py-6 text-center"
+      >
+        <span aria-hidden="true" class="material-symbols-outlined text-3xl text-slate-400"
+          >lock</span
+        >
+        <p class="mt-2 text-sm font-medium text-on-surface-variant">
+          Salve os dados da arena primeiro
+        </p>
+      </div>
+    } @else {
+      @if (mostrarFormularioQuadra()) {
+        <form
+          class="mt-4 space-y-3 rounded-xl border border-primary/30 bg-primary/5 p-4"
+          [formGroup]="formQuadra"
+          (ngSubmit)="salvarQuadra()"
+          novalidate
+        >
+          <p class="text-sm font-semibold text-on-surface">
+            {{ quadraEditando() ? 'Editar quadra' : 'Nova quadra' }}
+          </p>
+          <div>
+            <label class="rotulo" for="quadra-nome">Nome</label>
+            <input
+              id="quadra-nome"
+              type="text"
+              class="campo"
+              formControlName="nome"
+              placeholder="Quadra 1"
+            />
+            @if (formQuadra.controls.nome.touched && formQuadra.controls.nome.invalid) {
+              <p class="erro-campo">Informe o nome da quadra</p>
+            }
+          </div>
+          <div>
+            <label class="rotulo" for="quadra-tipo">Tipo</label>
+            <select id="quadra-tipo" class="campo" formControlName="tipo">
+              <option value="Society">Society</option>
+              <option value="Futsal">Futsal</option>
+              <option value="Areia">Areia</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-2 sm:flex-row">
+            <button type="submit" class="btn-primario">Salvar quadra</button>
+            <button type="button" class="btn-suave" (click)="cancelarQuadra()">Cancelar</button>
+          </div>
+        </form>
+      }
+
+      @if (quadras().length === 0) {
+        <div class="mt-4 rounded-xl border border-dashed border-outline px-4 py-6 text-center">
+          <span aria-hidden="true" class="material-symbols-outlined text-3xl text-slate-400"
+            >stadium</span
+          >
+          <p class="mt-2 text-sm font-medium text-on-surface-variant">Nenhuma quadra cadastrada</p>
+        </div>
+      } @else {
+        <ul class="mt-4 divide-y divide-outline/70">
+          @for (quadra of quadras(); track quadra.id) {
+            <li class="flex items-center gap-3 py-3">
+              <span
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary"
+              >
+                <span aria-hidden="true" class="material-symbols-outlined text-xl">stadium</span>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="truncate text-sm font-semibold text-on-surface">{{ quadra.nome }}</p>
+                <p class="text-xs text-on-surface-variant">{{ quadra.tipo }}</p>
+              </div>
+              <button
+                type="button"
+                class="flex h-11 w-11 items-center justify-center rounded-lg text-on-surface-variant transition hover:bg-surface hover:text-primary"
+                [attr.aria-label]="'Editar ' + quadra.nome"
+                (click)="editarQuadra(quadra)"
+              >
+                <span aria-hidden="true" class="material-symbols-outlined text-xl">edit</span>
+              </button>
+              <button
+                type="button"
+                class="flex h-11 w-11 items-center justify-center rounded-lg text-error transition hover:bg-error/5"
+                [attr.aria-label]="'Excluir ' + quadra.nome"
+                (click)="pedirExclusao(quadra)"
+              >
+                <span aria-hidden="true" class="material-symbols-outlined text-xl">delete</span>
+              </button>
+            </li>
+          }
+        </ul>
+      }
+    }
+  </div>
+</div>
+
+<app-modal
+  [aberto]="quadraExcluindo() !== null"
+  titulo="Excluir quadra?"
+  (fechar)="quadraExcluindo.set(null)"
+>
+  @if (quadraExcluindo(); as quadra) {
+    <p class="text-sm leading-relaxed text-on-surface-variant">
+      A quadra <strong class="text-on-surface">{{ quadra.nome }}</strong> e os bloqueios dela serão
+      removidos. Esta ação não pode ser desfeita.
+    </p>
+    <div class="mt-5 space-y-2">
+      <button type="button" class="btn-perigo" (click)="confirmarExclusao()">Excluir quadra</button>
+      <button type="button" class="btn-suave" (click)="quadraExcluindo.set(null)">Cancelar</button>
+    </div>
+  }
+</app-modal>

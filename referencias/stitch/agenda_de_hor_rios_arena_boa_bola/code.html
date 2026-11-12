@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#f8f9ff;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-tint": "#006d3d", "error": "#ba1a1a", "surface-variant": "#d9e3f6", "on-surface-variant": "#3f4941", "primary-fixed-dim": "#7dda9e", "background": "#f8f9ff", "surface-container": "#e6eeff", "inverse-primary": "#7dda9e", "inverse-on-surface": "#eaf1ff", "secondary-container": "#a8f3c0", "surface-bright": "#f8f9ff", "on-secondary-container": "#297149", "primary": "#006438", "on-secondary-fixed": "#00210f", "on-surface": "#121c2a", "surface-container-highest": "#d9e3f6", "on-tertiary-fixed": "#291800", "tertiary-fixed-dim": "#ffb955", "on-tertiary-container": "#fff1e4", "on-primary-container": "#d1ffdb", "on-error-container": "#93000a", "secondary-fixed-dim": "#8dd6a5", "on-primary": "#ffffff", "surface-dim": "#d0dbed", "primary-container": "#1b7f4c", "surface-container-lowest": "#ffffff", "on-error": "#ffffff", "outline-variant": "#becabe", "error-container": "#ffdad6", "primary-fixed": "#99f6b8", "tertiary": "#794e00", "tertiary-fixed": "#ffddb4", "tertiary-container": "#996400", "on-tertiary": "#ffffff", "surface-container-high": "#dee9fc", "surface-container-low": "#eff4ff", "on-secondary-fixed-variant": "#00522e", "secondary": "#216b43", "inverse-surface": "#27313f", "outline": "#6f7a70", "on-primary-fixed-variant": "#00522d", "on-primary-fixed": "#00210f", "surface": "#f8f9ff", "on-background": "#121c2a", "on-secondary": "#ffffff", "on-tertiary-fixed-variant": "#633f00", "secondary-fixed": "#a8f3c0" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "space-lg": "1rem", "space-xs": "0.25rem", "space-xl": "1.5rem", "gutter-sm": "0.75rem", "gutter": "1rem", "space-md": "0.75rem", "margin-md": "1.5rem", "margin": "1rem" }, "fontFamily": { "label-xs": ["Inter"], "body-sm": ["Inter"], "label-md": ["Inter"], "headline-md": ["Inter"], "body-md": ["Inter"], "headline-lg": ["Inter"], "label-lg": ["Inter"], "headline-xl-mobile": ["Inter"], "headline-xl": ["Inter"], "body-lg": ["Inter"], "label-sm": ["Inter"], "headline-sm": ["Inter"] }, "fontSize": { "label-xs": ["10px", { "lineHeight": "12px", "letterSpacing": "0.04em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "label-md": ["14px", { "lineHeight": "18px", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-lg": ["16px", { "lineHeight": "20px", "fontWeight": "600" }], "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }] } } } }</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 inset-x-0 z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)] pt-safe"><div class="h-14 max-w-[480px] mx-auto px-margin flex items-center justify-between"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-primary text-[24px]">sports_soccer</span><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-semibold">Agenda</span></div><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full max-w-[480px] mx-auto px-margin pt-14 pb-20 bg-surface"><div class="flex flex-col w-full pb-24">
+<!-- Arena & Venue Context Card -->
+<section class="w-full bg-surface-container-lowest rounded-xl shadow-sm p-space-md mb-space-md">
+<div class="flex items-center justify-between gap-space-sm mb-space-sm">
+<button class="flex items-center gap-space-xs text-left group" type="button">
+<div class="w-9 h-9 rounded-xl bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">stadium</span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">Arena Boa Bola</span>
+<span class="material-symbols-outlined text-outline text-[20px]">expand_more</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">location_on</span>
+<span>Pituba, Salvador • Society Sintético</span>
+</div>
+</div>
+</button>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-xs text-label-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+        Aberta hoje
+      </span>
+</div>
+<!-- Court Segmented Control -->
+<div class="p-1 rounded-xl bg-surface-container flex items-center gap-1">
+<button class="flex-1 py-2 px-3 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md shadow-sm flex items-center justify-center gap-1.5 transition-all" type="button">
+<span class="material-symbols-outlined text-[16px]">sports_soccer</span>
+<span>Quadra 1</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container-lowest/20 font-label-xs text-label-xs">7x7</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm flex items-center justify-center gap-1.5 hover:bg-surface-bright transition-all" type="button">
+<span class="material-symbols-outlined text-outline text-[16px]">sports_soccer</span>
+<span>Quadra 2</span>
+<span class="px-1.5 py-0.2 rounded-full bg-surface-container font-label-xs text-label-xs text-on-surface-variant">5x5</span>
+</button>
+</div>
+</section>
+<!-- Horizontal Date Navigation Strip -->
+<section class="w-full mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Novembro 2024</h2>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium">Próximos 7 dias</span>
+</div>
+<!-- Scrollable Strip -->
+<div class="flex items-center gap-2 overflow-x-auto py-1.5 -mx-margin px-margin scrollbar-none">
+<!-- Day 1: Sex 13/11 -->
+<button class="flex flex-col items-center justify-center min-w-[58px] h-[74px] rounded-xl bg-surface-container-lowest shadow-sm p-1.5 text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant">Sex</span>
+<span class="font-headline-sm text-headline-sm font-semibold mt-0.5">13</span>
+<span class="w-1.5 h-1.5 rounded-full bg-outline-variant mt-1"></span>
+</button>
+<!-- Day 2: Sáb 14/11 (SELECTED - HOJE) -->
+<button class="flex flex-col items-center justify-center min-w-[64px] h-[78px] rounded-xl bg-primary-container text-on-primary shadow-md p-1.5 transform scale-[1.02] transition-transform" type="button">
+<span class="font-label-xs text-label-xs uppercase tracking-wider bg-surface-container-lowest/20 px-1.5 rounded-full">Hoje</span>
+<span class="font-headline-sm text-headline-sm font-bold mt-0.5">14</span>
+<span class="font-label-xs text-label-xs opacity-90">Sáb</span>
+</button>
+<!-- Day 3: Dom 15/11 -->
+<button class="flex flex-col items-center justify-center min-w-[58px] h-[74px] rounded-xl bg-surface-container-lowest shadow-sm p-1.5 text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant">Dom</span>
+<span class="font-headline-sm text-headline-sm font-semibold mt-0.5">15</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+</button>
+<!-- Day 4: Seg 16/11 -->
+<button class="flex flex-col items-center justify-center min-w-[58px] h-[74px] rounded-xl bg-surface-container-lowest shadow-sm p-1.5 text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant">Seg</span>
+<span class="font-headline-sm text-headline-sm font-semibold mt-0.5">16</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+</button>
+<!-- Day 5: Ter 17/11 -->
+<button class="flex flex-col items-center justify-center min-w-[58px] h-[74px] rounded-xl bg-surface-container-lowest shadow-sm p-1.5 text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant">Ter</span>
+<span class="font-headline-sm text-headline-sm font-semibold mt-0.5">17</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+</button>
+<!-- Day 6: Qua 18/11 -->
+<button class="flex flex-col items-center justify-center min-w-[58px] h-[74px] rounded-xl bg-surface-container-lowest shadow-sm p-1.5 text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant">Qua</span>
+<span class="font-headline-sm text-headline-sm font-semibold mt-0.5">18</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+</button>
+<!-- Day 7: Qui 19/11 -->
+<button class="flex flex-col items-center justify-center min-w-[58px] h-[74px] rounded-xl bg-surface-container-lowest shadow-sm p-1.5 text-on-surface hover:bg-surface-container-high transition-colors" type="button">
+<span class="font-label-xs text-label-xs uppercase text-on-surface-variant">Qui</span>
+<span class="font-headline-sm text-headline-sm font-semibold mt-0.5">19</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1"></span>
+</button>
+</div>
+</section>
+<!-- Weather & Pitch Highlights Micro-Banner -->
+<section class="w-full bg-surface-container-high rounded-xl p-space-sm mb-space-md flex items-center justify-between text-on-surface">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-tertiary text-[20px]">wb_twilight</span>
+<span class="font-body-sm text-body-sm">Noite fresca em Salvador: 25°C • Sem chuva</span>
+</div>
+<span class="font-label-xs text-label-xs bg-surface-container-lowest px-2 py-0.5 rounded-full text-on-surface-variant">Refletores LED</span>
+</section>
+<!-- Time Slots Section Header -->
+<div class="flex items-center justify-between mb-space-xs">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Horários Disponíveis</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Toque no horário para selecionar sua partida</p>
+</div>
+<span class="font-label-xs text-label-xs px-2 py-1 rounded-full bg-surface-container font-semibold text-primary">6 horários</span>
+</div>
+<!-- Time Slots Grid -->
+<div class="grid grid-cols-2 gap-space-sm mb-space-md">
+<!-- Slot 1: 18:00 - 19:00 (Ocupado) -->
+<div class="p-space-md rounded-xl bg-surface-container-high/60 shadow-sm flex flex-col justify-between opacity-80 cursor-not-allowed min-h-[96px]">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-headline-sm text-outline font-semibold">18:00 - 19:00</span>
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container/50 -mx-3 -mb-3 px-3 py-1.5 rounded-b-xl">
+<span class="font-label-xs text-label-xs uppercase font-bold text-outline">Ocupado</span>
+<span class="font-body-sm text-body-sm text-outline">R$ 120</span>
+</div>
+</div>
+<!-- Slot 2: 19:00 - 20:00 (Ocupado) -->
+<div class="p-space-md rounded-xl bg-surface-container-high/60 shadow-sm flex flex-col justify-between opacity-80 cursor-not-allowed min-h-[96px]">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-headline-sm text-outline font-semibold">19:00 - 20:00</span>
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container/50 -mx-3 -mb-3 px-3 py-1.5 rounded-b-xl">
+<span class="font-label-xs text-label-xs uppercase font-bold text-outline">Ocupado</span>
+<span class="font-body-sm text-body-sm text-outline">R$ 120</span>
+</div>
+</div>
+<!-- Slot 3: 20:00 - 21:00 (SELECTED) -->
+<button class="p-space-md rounded-xl bg-primary-container text-on-primary shadow-md flex flex-col justify-between min-h-[96px] text-left transform active:scale-95 transition-all" type="button">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-headline-sm font-bold text-on-primary">20:00 - 21:00</span>
+<div class="w-6 h-6 rounded-full bg-surface-container-lowest text-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-primary/40 -mx-3 -mb-3 px-3 py-1.5 rounded-b-xl">
+<span class="font-label-xs text-label-xs uppercase font-bold text-on-primary-container">Selecionado</span>
+<span class="font-label-md text-label-md font-bold text-on-primary">R$ 120</span>
+</div>
+</button>
+<!-- Slot 4: 21:00 - 22:00 (Livre) -->
+<button class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between min-h-[96px] text-left group hover:bg-surface-container-low active:scale-95 transition-all" type="button">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">21:00 - 22:00</span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim"></span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-low -mx-3 -mb-3 px-3 py-1.5 rounded-b-xl">
+<span class="font-label-xs text-label-xs uppercase font-bold text-primary">Livre</span>
+<span class="font-label-md text-label-md font-semibold text-primary">R$ 120</span>
+</div>
+</button>
+<!-- Slot 5: 22:00 - 23:00 (Livre) -->
+<button class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between min-h-[96px] text-left group hover:bg-surface-container-low active:scale-95 transition-all" type="button">
+<div class="flex items-start justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface font-semibold group-hover:text-primary transition-colors">22:00 - 23:00</span>
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim"></span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-low -mx-3 -mb-3 px-3 py-1.5 rounded-b-xl">
+<span class="font-label-xs text-label-xs uppercase font-bold text-primary">Livre</span>
+<span class="font-label-md text-label-md font-semibold text-primary">R$ 120</span>
+</div>
+</button>
+<!-- Slot 6: 23:00 - 00:00 (Bloqueado) -->
+<div class="p-space-md rounded-xl bg-surface-container shadow-inner flex flex-col justify-between min-h-[96px] opacity-75 cursor-not-allowed relative overflow-hidden">
+<!-- Decorative faint diagonal pattern via SVG background -->
+<div class="absolute inset-0 opacity-15 pointer-events-none">
+<svg height="100%" width="100%">
+<defs>
+<pattern height="8" id="diagonal-stripe" patterntransform="rotate(45 0 0)" patternunits="userSpaceOnUse" width="8">
+<line class="text-outline" stroke="currentColor" stroke-width="2" x1="0" x2="0" y1="0" y2="8"></line>
+</pattern>
+</defs>
+<rect fill="url(#diagonal-stripe)" height="100%" width="100%"></rect>
+</svg>
+</div>
+<div class="flex items-start justify-between relative z-10">
+<span class="font-headline-sm text-headline-sm text-outline font-semibold">23:00 - 00:00</span>
+<span class="material-symbols-outlined text-outline text-[18px]">lock</span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 bg-surface-container-highest/60 -mx-3 -mb-3 px-3 py-1.5 rounded-b-xl relative z-10">
+<span class="font-label-xs text-label-xs uppercase font-bold text-outline">Bloqueado</span>
+<span class="font-body-sm text-body-sm text-outline line-through">R$ 120</span>
+</div>
+</div>
+</div>
+<!-- Legend Section -->
+<section class="w-full bg-surface-container-lowest rounded-xl p-space-md mb-space-md shadow-sm">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold mb-space-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">info</span>
+<span>Legenda de horários</span>
+</h4>
+<div class="space-y-space-xs">
+<div class="flex items-center gap-space-sm p-1.5 rounded-lg bg-surface-bright">
+<div class="w-5 h-5 rounded-lg bg-secondary-container flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Livre</p>
+<p class="font-label-xs text-label-xs text-on-surface-variant">Disponível para reserva imediata</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-1.5 rounded-lg bg-surface-bright">
+<div class="w-5 h-5 rounded-lg bg-surface-container-high flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Ocupado</p>
+<p class="font-label-xs text-label-xs text-on-surface-variant">Horário já reservado por outro time</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm p-1.5 rounded-lg bg-surface-bright">
+<div class="w-5 h-5 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[14px]">lock</span>
+</div>
+<div class="flex-1">
+<p class="font-body-sm text-body-sm text-on-surface font-medium">Bloqueado</p>
+<p class="font-label-xs text-label-xs text-on-surface-variant">Manutenção do gramado ou fechamento</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pitch Information & Perks -->
+<section class="w-full bg-surface-container-low rounded-xl p-space-md mb-space-md">
+<div class="flex items-center justify-between mb-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Estrutura da Quadra 1</span>
+<span class="font-label-xs text-label-xs text-primary font-bold">Inclusos no valor</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="p-2 bg-surface-container-lowest rounded-lg flex flex-col items-center text-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mb-0.5">sports_soccer</span>
+<span class="font-label-xs text-label-xs text-on-surface">Bola oficial</span>
+</div>
+<div class="p-2 bg-surface-container-lowest rounded-lg flex flex-col items-center text-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mb-0.5">checkroom</span>
+<span class="font-label-xs text-label-xs text-on-surface">Coletes coloridos</span>
+</div>
+<div class="p-2 bg-surface-container-lowest rounded-lg flex flex-col items-center text-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-[20px] mb-0.5">shower</span>
+<span class="font-label-xs text-label-xs text-on-surface">Vestiário c/ água</span>
+</div>
+</div>
+</section>
+<!-- Floating Sticky Bottom CTA Summary Bar (Positioned above fixed nav) -->
+<div class="fixed bottom-16 inset-x-0 z-40 max-w-[480px] mx-auto px-margin pb-2">
+<div class="bg-surface-container-lowest/95 backdrop-blur-xl p-3 rounded-xl shadow-xl flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-xs text-label-xs uppercase font-bold text-primary tracking-wide">1 horário selecionado</span>
+</div>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Total: R$ 120</span>
+</div>
+<div class="flex items-center justify-between text-on-surface-variant font-body-sm text-body-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">schedule</span>
+<span>Sáb, 14/11 • 20h às 21h • Quadra 1</span>
+</div>
+</div>
+<button class="w-full min-h-[48px] py-3 px-4 rounded-xl bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md flex items-center justify-center gap-2 hover:bg-primary active:scale-[0.98] transition-all" type="button">
+<span>Solicitar reserva</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div></main><nav class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary-container font-semibold"><div class="h-16 max-w-[480px] mx-auto px-margin flex items-center justify-around"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-xs transition-colors text-primary-container font-semibold" data-path="agenda" href="#"><span class="material-symbols-outlined text-[24px]">calendar_month</span><span class="font-label-xs text-label-xs">Agenda</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-xs text-on-surface-variant hover:text-on-surface transition-colors" data-path="minhas-reservas" href="#"><span class="material-symbols-outlined text-[24px]">confirmation_number</span><span class="font-label-xs text-label-xs">Minhas reservas</span></a><a class="flex flex-col items-center justify-center min-w-[56px] min-h-[44px] gap-space-xs text-on-surface-variant hover:text-on-surface transition-colors" data-path="perfil" href="#"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="font-label-xs text-label-xs">Perfil</span></a></div></nav></body></html>

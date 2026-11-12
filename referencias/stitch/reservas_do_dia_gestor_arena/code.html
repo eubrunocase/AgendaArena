@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;font-family:'Inter',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-container":"#996400","secondary-fixed":"#a8f3c0","surface-container-high":"#dee9fc","on-surface-variant":"#3f4941","surface-container-low":"#eff4ff","on-background":"#121c2a","surface-variant":"#d9e3f6","error":"#ba1a1a","on-secondary-fixed":"#00210f","tertiary-fixed":"#ffddb4","outline":"#6f7a70","primary-fixed":"#99f6b8","on-secondary":"#ffffff","background":"#f8f9ff","on-tertiary":"#ffffff","surface-container":"#e6eeff","secondary-container":"#a8f3c0","on-error":"#ffffff","primary-fixed-dim":"#7dda9e","inverse-on-surface":"#eaf1ff","on-secondary-container":"#297149","outline-variant":"#becabe","error-container":"#ffdad6","on-tertiary-container":"#fff1e4","surface-container-highest":"#d9e3f6","surface-container-lowest":"#ffffff","on-surface":"#121c2a","on-primary-fixed":"#00210f","secondary":"#216b43","on-primary-container":"#d1ffdb","primary-container":"#1b7f4c","surface-dim":"#d0dbed","surface":"#f8f9ff","on-tertiary-fixed":"#291800","on-primary":"#ffffff","surface-tint":"#006d3d","tertiary-fixed-dim":"#ffb955","tertiary":"#794e00","inverse-primary":"#7dda9e","secondary-fixed-dim":"#8dd6a5","surface-bright":"#f8f9ff","on-secondary-fixed-variant":"#00522e","on-error-container":"#93000a","primary":"#006438","inverse-surface":"#27313f","on-tertiary-fixed-variant":"#633f00","on-primary-fixed-variant":"#00522d"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"gutter-sm":"0.75rem","margin-md":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-lg":"1rem","space-md":"0.75rem",gutter:"1rem","space-xl":"1.5rem",margin:"1rem"},fontFamily:{"body-sm":["Inter"],"headline-md":["Inter"],"headline-xl":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"label-xs":["Inter"],"label-md":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"label-lg":["Inter"],"headline-xl-mobile":["Inter"],"body-lg":["Inter"]},fontSize:{"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-md":["20px",{lineHeight:"28px",fontWeight:"600"}],"headline-xl":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"700"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-xs":["10px",{lineHeight:"12px",letterSpacing:"0.04em",fontWeight:"700"}],"label-md":["14px",{lineHeight:"18px",fontWeight:"600"}],"label-sm":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"label-lg":["16px",{lineHeight:"20px",fontWeight:"600"}],"headline-xl-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.01em",fontWeight:"700"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}]}}}};</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface font-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter flex items-center justify-between max-w-[480px] mx-auto"><div class="flex items-center gap-space-sm"><div class="w-9 h-9 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm"><span class="material-symbols-outlined text-[20px]">sports_soccer</span></div><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-primary leading-none tracking-tight">AgendaArena</span><span class="font-label-xs text-label-xs text-on-surface-variant uppercase tracking-wider">Salvador • BA</span></div></div><div class="flex items-center gap-space-sm"><button aria-label="Notificações" class="w-11 h-11 rounded-full flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/40 transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex flex-col relative w-full px-gutter pt-16 pb-28 bg-surface max-w-[480px] mx-auto min-h-screen"><div class="flex flex-col w-full pb-6 space-y-space-md">
+<!-- Sub-header / Context Ribbon -->
+<div class="flex items-center justify-between pt-1">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">stadium</span>
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Arena Boa Bola</h1>
+</div>
+<span class="font-label-xs text-label-xs bg-secondary-container text-on-secondary-container px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold">
+      Gestor
+    </span>
+</div>
+<!-- Date Navigation Bar -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-xs rounded-xl shadow-sm">
+<button aria-label="Dia anterior" class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<div class="flex items-center gap-space-xs">
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg hover:bg-surface-container transition-colors">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold">Hoje, 14 de Novembro</span>
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
+</button>
+</div>
+<button aria-label="Próximo dia" class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<!-- Summary Metric Ribbon -->
+<div class="bg-surface-container-low p-space-md rounded-xl shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">5 reservas</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full border-dashed border-2 border-primary"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">2 horários livres</span>
+</div>
+</div>
+<div class="flex items-center gap-1 text-primary bg-surface-container-lowest px-2 py-1 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-[16px]">payments</span>
+<span class="font-label-xs text-label-xs font-semibold text-primary">R$ 600 est.</span>
+</div>
+</div>
+<!-- Court Switcher (Segmented Control) -->
+<div class="bg-surface-container p-1 rounded-xl flex gap-1">
+<button class="flex-1 py-2 px-3 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all" id="tab-quadra-1">
+<span class="font-semibold">Quadra 1</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant bg-surface-container px-1.5 py-0.5 rounded-full">Society 7</span>
+</button>
+<button class="flex-1 py-2 px-3 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all" id="tab-quadra-2">
+<span class="font-semibold">Quadra 2</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant/80 bg-surface-container-high px-1.5 py-0.5 rounded-full">Society 5</span>
+</button>
+</div>
+<!-- Timeline Header / Quick Tip -->
+<div class="flex items-center justify-between px-1">
+<span class="font-label-xs text-label-xs uppercase tracking-wider text-on-surface-variant font-bold">Grade Horária Noturna</span>
+<span class="font-label-xs text-label-xs text-secondary flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">touch_app</span> Toque no slot para detalhes
+    </span>
+</div>
+<!-- Timeline Schedule Slots -->
+<div class="flex flex-col space-y-space-sm">
+<!-- 17:00 - 18:00 : LIVRE -->
+<div class="relative bg-surface-container-lowest rounded-xl p-space-md shadow-sm transition-all hover:bg-surface-container-low flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="flex flex-col items-center justify-center w-12 py-1 bg-surface-container-low rounded-lg text-on-surface">
+<span class="font-label-xs text-label-xs font-bold leading-tight">17:00</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">18:00</span>
+</div>
+<div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm font-semibold text-secondary">Horário Livre</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Disponível para agendamento</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold">R$ 120</span>
+</div>
+<div class="flex items-center justify-end gap-space-sm mt-space-sm pt-space-xs">
+<button class="h-9 px-3 rounded-lg text-primary hover:bg-surface-container font-label-sm text-label-sm flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[16px]">lock_clock</span>
+          Bloquear
+        </button>
+<button class="h-9 px-3 rounded-lg bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center gap-1 shadow-sm active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[16px]">add</span>
+          Avulso
+        </button>
+</div>
+</div>
+<!-- 18:00 - 19:00 : CONFIRMADA (Checked) -->
+<div class="bg-secondary-container/40 rounded-xl p-space-md shadow-sm transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-space-sm">
+<div class="flex flex-col items-center justify-center w-12 py-1 bg-surface-container-lowest rounded-lg text-on-surface shadow-xs">
+<span class="font-label-xs text-label-xs font-bold leading-tight">18:00</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">19:00</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Baba dos Amigos da Pituba</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Capitão: Marcos</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-xs text-label-xs bg-surface-container-lowest text-secondary font-semibold px-2 py-0.5 rounded-full shadow-xs">
+                R$ 120 • Pago no local
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Compareceu Checkbox -->
+<div class="flex items-center justify-between mt-space-sm pt-space-xs bg-surface-container-lowest/60 p-2 rounded-lg">
+<div class="flex items-center gap-1 text-on-secondary-container">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Status de Presença</span>
+</div>
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input checked="" class="sr-only peer attendance-checkbox" type="checkbox"/>
+<div class="w-5 h-5 rounded bg-surface-container-highest peer-checked:bg-primary flex items-center justify-center text-on-primary transition-all">
+<span class="material-symbols-outlined text-[16px] peer-checked:block">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Compareceu</span>
+</label>
+</div>
+</div>
+<!-- 19:00 - 20:00 : CONFIRMADA (Unchecked) -->
+<div class="bg-secondary-container/40 rounded-xl p-space-md shadow-sm transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-space-sm">
+<div class="flex flex-col items-center justify-center w-12 py-1 bg-surface-container-lowest rounded-lg text-on-surface shadow-xs">
+<span class="font-label-xs text-label-xs font-bold leading-tight">19:00</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">20:00</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Turma do Sextou FC</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Capitão: Lucas</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-xs text-label-xs bg-surface-container-lowest text-secondary font-semibold px-2 py-0.5 rounded-full shadow-xs">
+                R$ 130 • PIX adiantado
+              </span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-sm pt-space-xs bg-surface-container-lowest/60 p-2 rounded-lg">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">pending</span>
+<span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Aguardando chegada</span>
+</div>
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input class="sr-only peer attendance-checkbox" type="checkbox"/>
+<div class="w-5 h-5 rounded bg-surface-container-highest peer-checked:bg-primary flex items-center justify-center text-on-primary transition-all">
+<span class="material-symbols-outlined text-[16px] hidden peer-checked:block">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Compareceu</span>
+</label>
+</div>
+</div>
+<!-- 20:00 - 21:00 : CONFIRMADA (Unchecked) -->
+<div class="bg-secondary-container/40 rounded-xl p-space-md shadow-sm transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-space-sm">
+<div class="flex flex-col items-center justify-center w-12 py-1 bg-surface-container-lowest rounded-lg text-on-surface shadow-xs">
+<span class="font-label-xs text-label-xs font-bold leading-tight">20:00</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">21:00</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Carlos Silva</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Baba do Pelô • 14 atletas</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-xs text-label-xs bg-surface-container-lowest text-secondary font-semibold px-2 py-0.5 rounded-full shadow-xs">
+                R$ 130 • Sinal de R$ 50 pago
+              </span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-sm pt-space-xs bg-surface-container-lowest/60 p-2 rounded-lg">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">pending</span>
+<span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Aguardando chegada</span>
+</div>
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input class="sr-only peer attendance-checkbox" type="checkbox"/>
+<div class="w-5 h-5 rounded bg-surface-container-highest peer-checked:bg-primary flex items-center justify-center text-on-primary transition-all">
+<span class="material-symbols-outlined text-[16px] hidden peer-checked:block">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Compareceu</span>
+</label>
+</div>
+</div>
+<!-- 21:00 - 22:00 : BLOQUEADO (Manutenção) -->
+<div class="relative overflow-hidden bg-surface-container rounded-xl p-space-md shadow-sm">
+<!-- Diagonal subtle stripes overlay -->
+<div class="absolute inset-0 opacity-10 bg-[linear-gradient(45deg,#121c2a_25%,transparent_25%,transparent_50%,#121c2a_50%,#121c2a_75%,transparent_75%,transparent_100%)] bg-[length:16px_16px]"></div>
+<div class="relative z-10 flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="flex flex-col items-center justify-center w-12 py-1 bg-surface-container-high rounded-lg text-on-surface-variant">
+<span class="font-label-xs text-label-xs font-bold leading-tight">21:00</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">22:00</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[18px] text-tertiary">lock</span>
+<span class="font-label-md text-label-md">Bloqueado pela Arena</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Manutenção de refletores</span>
+</div>
+</div>
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-highest text-on-surface hover:bg-surface-variant font-label-xs text-label-xs font-semibold flex items-center gap-1 transition-colors">
+          Liberar
+        </button>
+</div>
+</div>
+<!-- 22:00 - 23:00 : CONFIRMADA (Unchecked) -->
+<div class="bg-secondary-container/40 rounded-xl p-space-md shadow-sm transition-all flex flex-col justify-between">
+<div class="flex items-start justify-between">
+<div class="flex items-start gap-space-sm">
+<div class="flex flex-col items-center justify-center w-12 py-1 bg-surface-container-lowest rounded-lg text-on-surface shadow-xs">
+<span class="font-label-xs text-label-xs font-bold leading-tight">22:00</span>
+<span class="font-label-xs text-label-xs text-on-surface-variant leading-tight">23:00</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Veteranos do Imbuí</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Reserva Mensalista Fixa</span>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="font-label-xs text-label-xs bg-surface-container-lowest text-secondary font-semibold px-2 py-0.5 rounded-full shadow-xs">
+                Mensalidade em dia
+              </span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-between mt-space-sm pt-space-xs bg-surface-container-lowest/60 p-2 rounded-lg">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">pending</span>
+<span class="font-label-xs text-label-xs font-semibold uppercase tracking-wider">Aguardando chegada</span>
+</div>
+<label class="flex items-center gap-2 cursor-pointer select-none">
+<input class="sr-only peer attendance-checkbox" type="checkbox"/>
+<div class="w-5 h-5 rounded bg-surface-container-highest peer-checked:bg-primary flex items-center justify-center text-on-primary transition-all">
+<span class="material-symbols-outlined text-[16px] hidden peer-checked:block">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Compareceu</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Quick Floating Action Trigger Area for Manager -->
+<div class="pt-2 flex items-center justify-between gap-space-sm">
+<button class="flex-1 h-12 rounded-xl bg-surface-container-lowest text-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[20px]">share</span>
+      Compartilhar Grade
+    </button>
+<button class="flex-1 h-12 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm hover:bg-primary-container active:scale-98 transition-transform">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+      Nova Reserva
+    </button>
+</div>
+</div>
+<script>
+  // Simple micro-interaction for attendance check toggling
+  document.querySelectorAll('.attendance-checkbox').forEach(box => {
+    box.addEventListener('change', (e) => {
+      const parentLabel = e.target.closest('div');
+      const icon = e.target.parentElement.querySelector('span');
+      if (e.target.checked) {
+        icon.classList.remove('hidden');
+      } else {
+        icon.classList.add('hidden');
+      }
+    });
+  });
+
+  // Tab switching interaction
+  const tab1 = document.getElementById('tab-quadra-1');
+  const tab2 = document.getElementById('tab-quadra-2');
+
+  tab1?.addEventListener('click', () => {
+    tab1.className = "flex-1 py-2 px-3 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all";
+    tab2.className = "flex-1 py-2 px-3 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all";
+  });
+
+  tab2?.addEventListener('click', () => {
+    tab2.className = "flex-1 py-2 px-3 rounded-lg bg-surface-container-lowest text-on-surface shadow-sm font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all";
+    tab1.className = "flex-1 py-2 px-3 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-all";
+  });
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-primary font-label-md"><div class="flex justify-around items-center h-16 max-w-[480px] mx-auto px-space-xs"><a class="flex flex-col items-center justify-center gap-space-xs min-w-[64px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="agenda" href="#"><span class="material-symbols-outlined text-[24px]">calendar_today</span><span class="font-label-xs text-label-xs">Agenda</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[64px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="minhas-reservas" href="#"><span class="material-symbols-outlined text-[24px]">confirmation_number</span><span class="font-label-xs text-label-xs">Minhas reservas</span></a><a class="flex flex-col items-center justify-center gap-space-xs min-w-[64px] min-h-[44px] text-on-surface-variant hover:text-on-surface transition-colors" data-path="perfil-jogador" href="#"><span class="material-symbols-outlined text-[24px]">account_circle</span><span class="font-label-xs text-label-xs">Perfil</span></a></div></nav></body></html>
